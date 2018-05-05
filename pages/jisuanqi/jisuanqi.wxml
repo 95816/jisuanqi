@@ -1,0 +1,40 @@
+<!--pages/jisuanqi/jisuanqi.wxml-->
+<view class='main'>
+  <!--头部  -->
+  <view class='header'>
+    <view class='screen'>{{screenData}}</view>
+  </view>
+  <!--主体  -->
+  <view class='body'>
+    <view class="btnGroup">
+      <view class='item fed' bindtap='clickBtn' id='{{clear}}'>C</view>
+      <view class='item fed' bindtap='clickBtn' id='{{del}}'>X</view>
+      <view class='item fed' bindtap='clickBtn' id='{{zf}}'>+/-</view>
+      <view class='item fed' bindtap='clickBtn' id='{{ida}}'>+</view>
+    </view>
+    <view class="btnGroup">
+      <view class='item blue' bindtap='clickBtn' id='{{id9}}'>9</view>
+      <view class='item blue' bindtap='clickBtn' id='{{id8}}'>8</view>
+      <view class='item blue' bindtap='clickBtn' id='{{id7}}'>7</view>
+      <view class='item fed' bindtap='clickBtn' id='{{idb}}'>-</view>
+    </view>
+    <view class="btnGroup">
+      <view class='item blue' bindtap='clickBtn' id='{{id6}}'>6</view>
+      <view class='item blue' bindtap='clickBtn' id='{{id5}}'>5</view>
+      <view class='item blue' bindtap='clickBtn' id='{{id4}}'>4</view>
+      <view class='item fed' bindtap='clickBtn' id='{{idc}}'>*</view>
+    </view>
+    <view class="btnGroup">
+      <view class='item blue' bindtap='clickBtn' id='{{id3}}'>3</view>
+      <view class='item blue' bindtap='clickBtn' id='{{id2}}'>2</view>
+      <view class='item blue' bindtap='clickBtn' id='{{id1}}'>1</view>
+      <view class='item fed' bindtap='clickBtn' id='{{idd}}'>÷</view>
+    </view>
+    <view class="btnGroup">
+      <view class='item blue' bindtap='clickBtn' id='{{id0}}'>0</view>
+      <view class='item blue' bindtap='clickBtn' id='{{dian}}'>·</view>
+      <view class='item blue' bindtap='history'>his</view>
+      <view class='item fed' bindtap='clickBtn' id="{{dengyu}}">=</view>
+    </view>
+  </view>
+</view>
