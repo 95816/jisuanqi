@@ -1,8 +1,8 @@
 {
   "pages":[
-    "pages/jisuanqi/jisuanqi",
-    "pages/history/history",
     "pages/index/index",
+    "pages/history/history",
+    "pages/jisuanqi/jisuanqi",
     "pages/logs/logs"
   ],
   "window":{

@@ -1,7 +1,5 @@
 <view class="main">
-  <view class='item'>11</view>
-  <view class='item'>22</view>
-  <view class='item'>33</view>
-  <view class='item'>44</view>
-  <view class='item'>55</view>
+  <view wx:for="{{his}}">
+    <view class='item'>{{item}}</view>
+  </view>
 </view>

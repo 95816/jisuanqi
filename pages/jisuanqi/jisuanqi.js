@@ -28,6 +28,7 @@ Page({
     screenData:0,
     isFuHao:false,
     result:[],//存取输入的值
+    history:[],
   },
 
   /**
@@ -97,7 +98,8 @@ Page({
     ////判断输入的值是否是退格键
     if (code == this.data.del){
       var data = this.data.screenData;
-      var newData=data.substr(0,data.length-1);
+      var newData = data.substr(0,(data.length)-1);
+      console.log(data);
       //截取最终屏幕显示的最后一个字符
       var lastWord = newData[newData.length-1];
       this.setData({ 'isFuHao': false });
@@ -133,10 +135,45 @@ Page({
       this.setData({'screenData':data});
       //判断输入的值是否是等于键
     } else if (code == this.data.dengyu) {
-      //1。获取屏幕的值
-      var data = this.data.screenData;
-      //2.向result 数组追加值
-      this.setData({'screenData':result});
+      //1.把数字和运算符分开[123,'+',321,'-',3]
+      var result = this.data.result;
+      var num = '';
+      var newArr=  [];
+      for(var i in result){
+        if(isNaN(result[i])==false || result[i]==this.data.dian){
+          num+=result[i];
+        }else{
+          newArr.push(num);
+          newArr.push(result[i]);
+          num="";
+        }
+      }
+      newArr.push(num);
+      //2.开始运算
+      var res = new Number(newArr[0]);
+      for(var i=1;i<newArr.length;i++){
+        //四种符号
+        if(newArr[i] == this.data.ida){
+          res+=Number(newArr[i+1]);
+        } else if (newArr[i] == this.data.idb){
+          res -= Number(newArr[i + 1]);
+        } else if (newArr[i] == this.data.idc) {
+          res *= Number(newArr[i + 1]);
+        } else if (newArr[i] == this.data.idd) {
+          res /= Number(newArr[i + 1]);
+        }
+      }
+      this.data.result = [];
+      this.data.result.push(res);
+      //3.历史记录
+      this.data.history.push(this.data.screenData+'='+res);
+      //4.写入缓存
+      wx.setStorageSync('historys',this.data.history);
+      console.log(res);
+      console.log(newArr);
+      console.log(this.data.history);
+      //4.输出结果
+      this.setData({'screenData':res});
     }else{
       //判断是不是符号
       if (code == this.data.ida || code == this.data.idb || code == this.data.idc || code == this.data.idd) {
@@ -145,12 +182,12 @@ Page({
         }
       }
       //获取此时屏幕的值
-      var data = this.data.screenData;
+      var val = this.data.screenData;
       var str = null;
-      if (data == 0) {
+      if (val == 0) {
         str = code;
       } else {
-        str = data + code;
+        str = val + code;
       }
       this.setData({ 'isFuHao': false });
       //判断是不是符号
@@ -159,7 +196,6 @@ Page({
       }
 
       this.data.result.push(code);
-      console.log(this.data.result);
       this.setData({ screenData: str });
     }
 
